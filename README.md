@@ -39,3 +39,5 @@ The frontend has been structued as follows (component-wise), and have Vue compon
     - Add Player Box
     - Add Game Box
     - Latest Scoreboard
+
+`App.vue` is the entry point, and contains some global CSS classes for buttons and inputs (however, these can be refactored into Vue components later)
