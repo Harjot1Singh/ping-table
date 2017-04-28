@@ -14,4 +14,7 @@ A Ping Pong League Table
 # Technology
 
 ## Backend
-Node.js (v7.9.0)
+**Node.js (v7.9.0)**
+
+## Frontend
+**Vue.js (2.0)**
