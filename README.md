@@ -17,7 +17,10 @@ A Ping Pong League Table
 **Node.js (v7.9.0)**
 
 ## Database
-**Postgres** - [Schema](docs/DB.png) 
+**Postgres** 
+
+### Schema
+![Schema](docs/DB.png) 
 
 ## Frontend
 **Vue.js (2.0)**
