@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <Title></Title>
+      <Heading></Heading>
       <PlayerBoard></PlayerBoard>
       <div class="columns">
         <div class="column">
@@ -18,20 +18,22 @@
 
 <script>
   /* Component Imports */
-  import Title from '@/components/Title';
+  import Heading from '@/components/Heading';
   import PlayerBoard from '@/components/PlayerBoard';
   import AddPlayer from '@/components/AddPlayer';
   import AddGame from '@/components/AddGame';
   import ScoreBoard from '@/components/ScoreBoard';
+  import TweetBox from '@/components/TweetBox';
 
   export default {
     /* Template Components */
     components: {
-      Title,
+      Heading,
       PlayerBoard,
       AddPlayer,
       AddGame,
-      ScoreBoard
+      ScoreBoard,
+      TweetBox
     },
 
     /* Template Data */

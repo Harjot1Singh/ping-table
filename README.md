@@ -1,34 +1,45 @@
 # ping-table
 A Ping Pong League Table
 
-# Status
-Currently building views. To preview: 
+# Features
+- Add and remove games from the league
+- League table showing top 5 players
+- List of game results
+- Winning % of each user, as won/total games played
+- User avatars via Gravatar
+- Autocomplete player names
+
+# Usage
+## Configuration
+Edit `config.json` with your desired values. 
+
+## Development
+To develop, with hot-reload for Vue components:
 ```
+# Start Node 
+npm run
+# Now in a seperate terminal, start Webpack for Frontend Development
 cd public
 npm install
 npm run dev
 ```
 View on `http://localhost:8080`
 
-# Proposed Features
-- Add and remove games from the league
-- League table showing top 5 players
-- List of game results
-- Winning % of each user, as won/total games played
-- _Visualisation of results_
-- _User avatars via Gravatar_
-- _List of tweets with hashtag #pingpong#_
-- _Autocomplete player names_
+When done with frontend, compile for distribution:
+```
+cd public
+npm run build
+```
 
 # Technology
 
 ## Backend
-**Node.js (v7.9.0)** - Not yet used
+**Node.js (v7.9.0)** - API Server, using Express, and Objection (Postgres ORM)
 
 ## Database
-**Postgres** - Not yet used
+**Postgres** - Perisistant storage
 
-### Proposed Schema
+### Schema
 ![Schema](docs/DB.png) 
 
 ## Frontend

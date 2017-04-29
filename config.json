@@ -1,0 +1,11 @@
+{
+    "database": {
+        "user": "postgres",
+        "password": "postgres",
+        "database": "pingpong",
+        "host": "localhost"
+    },
+    "server": {
+        "port": "8080"
+    }
+}

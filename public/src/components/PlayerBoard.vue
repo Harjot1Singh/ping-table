@@ -1,5 +1,6 @@
 <template>
     <div id="playerboard" class="board">
+    <h2>Top 5 Players</h2>
         <table class="table">
             <tbody>
                 <tr>
@@ -7,75 +8,88 @@
                     <th>Name</th>
                     <th>Won</th>
                     <th>Lost</th>
-                    <th>Winning %</th>
+                    <th>Win %</th>
                     <th>Points</th>
                 </tr>
-                <tr v-for="player in players">
-                    <td>{{ player.id }}</td>
-                    <td>{{ player.name }}</td>
-                    <td>{{ player.won }}</td>
-                    <td>{{ player.lost }}</td>
-                    <td>{{ player.won/player.games * 100}}%</td>
-                    <td>{{ player.points }}</td>
-                </tr>
+                <PlayerEntry v-for="(player, index) in players" :classObject="'pos-'+index" :index="index + 1" :player="player" :key="player.id"></PlayerEntry>
             </tbody>
         </table>
     </div>
 </template>
 
 <script>
+  import PlayerEntry from '@/components/PlayerEntry';
+
+  import EventBus from '@/EventBus';
+
   export default {
     /* Template Components */
-    components: {},
+    components: {
+      PlayerEntry
+    },
 
     /* Template Data */
     data() {
       return {
-        players: [
-          {
-            id: 1,
-            name: 'Harjot',
-            won: 1,
-            lost: 2,
-            games: 1
-          }
-        ]
+        players: []
       };
     },
 
     /* Computed Template Data */
-    computed() {},
+    computed: {},
 
     /* Lifecycle Hooks */
     created() {},
 
-    mounted() {},
+    mounted() {
+      this.getTopPlayers();
+      EventBus.$on('added-player', this.getTopPlayers);
+      EventBus.$on('added-game', this.getTopPlayers);
+    },
 
     destroyed() {},
 
     /* Instance Methods */
-    methods: {}
+    methods: {
+      getTopPlayers: function() {
+        this.$http.get('/api/playerboard')
+          .then(response => {
+            if (response.body.status === 'success') {
+              this.players = response.body.players;
+              this.error = false;
+            } else {
+              throw Error(response.body.error);
+            }
+          })
+          .catch(error => {
+            this.error = error.statusText || error || 'Unknown';
+          });
+      }
+    }
   };
 </script>
 
 <style scoped lang="scss">
-  @import "../../node_modules/bulma/sass/utilities/_all";
-  @import "../../node_modules/bulma/sass/elements/table";
-  
-  .table {
+  table {
     background: none;
+    border-collapse: collapse;
+    margin-bottom: 0;
   }
   
-  .table th {
+  th {
     color: white;
     font-weight: bolder;
+    border-bottom: 2px solid white;
+    text-align: center;
   }
   
-  .table td {
-    color: white;
+  @for $i from 0 through 4 {
+    .pos-#{$i} {
+      font-size: 27px - $i*3px;
+    }
   }
   
-  .table tr:hover {
+  tr:hover {
     color: white;
     background: none;
   }
