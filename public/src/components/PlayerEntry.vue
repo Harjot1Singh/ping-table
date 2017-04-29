@@ -10,7 +10,7 @@
       </td>
       <td>{{ player.wins }}</td>
       <td>{{ player.losses }}</td>
-      <td>{{ (player.wins/player.total * 100).toFixed(1) }}%</td>
+      <td>{{ win.toFixed(1) }}%</td>
       <td>{{ player.points }}</td>
     </tr>
   </transition>
@@ -32,7 +32,12 @@
     },
 
     /* Computed Template Data */
-    computed: {},
+    computed: {
+      win: function() {
+        const win = this.player.wins/this.player.total * 100;
+        return isNaN(win) ? 0: win;
+      }
+    },
 
     /* Lifecycle Hooks */
     created() {},
