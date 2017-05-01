@@ -17,7 +17,7 @@ exports.down = function(knex, Promise) {
     return Promise.all([
         knex.schema.table('sets', table => {
             table.dropForeign('gameId');
-            table.foreign('gameId').references('id').inTable('games')
+            table.foreign('gameId').references('id').inTable('games');
         }),
         knex.schema.table('games', table => {
             table.dropForeign('player1Id');
